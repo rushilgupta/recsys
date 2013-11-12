@@ -194,7 +194,11 @@ public class NonPersRecommender {
 		//int movies[] = {122, 603, 194};
 		
 		NonPersRecommender rec = new NonPersRecommender();
-		rec.parseFile("/Users/rgupta/Downloads/recsys-data-ratings.csv");
+        if( args == null || args.length != 1 || args[0] == null ) {
+            System.err.println( "USAGE: NonPersRecommender <filePath>" );
+            System.exit(1);
+        }
+		rec.parseFile( args[0] );
 		
 		for( int movieId : movies )	{
 			List<MovieRatings> list = rec.recommendedFor( movieId );
